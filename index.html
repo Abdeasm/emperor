@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="manifest" href="manifest.json"><meta name="theme-color" content="#0a0f18"><link rel="icon" href="icon-192.png"><title>إمبراطور النقر</title>
+<style>
+:root{color-scheme:dark;--bg:#0a0f18;--card:#131c2b;--line:#2a3447;--tx:#f2f4f8;--mut:#8a94a8;--gold:#f0b940;--grn:#3ddc97;--red:#ef6b5f;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+:root[data-theme="dark"]{color-scheme:dark}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{height:100%;margin:0}
+body{background:radial-gradient(ellipse at 15% 0%,#1d2f55 0%,transparent 55%),radial-gradient(ellipse at 95% 100%,#4a3010 0%,transparent 50%),radial-gradient(circle at 50% 50%,#0e1626 0%,#05080f 100%);background-attachment:fixed;color:var(--tx);font-family:system-ui,-apple-system,"Segoe UI",Tahoma,sans-serif;display:flex;flex-direction:column;overflow:hidden;user-select:none}
+.hdr{margin:10px;padding:14px 16px;border-radius:20px;background:linear-gradient(135deg,#2a3550,#141b2a);color:#f2f4f8;border:1px solid var(--line)}
+.hdr .nw{font-size:28px;font-weight:800;direction:ltr;text-align:right}
+.hdr .r{display:flex;justify-content:space-between;color:#3ddc97;font-weight:700;margin-top:6px;font-size:14px;direction:ltr}
+.hdr small{color:#aab3c5;font-size:12px}
+main{flex:1;overflow-y:auto;padding:0 10px 10px}
+.tabs{display:flex;background:var(--card);border-top:1px solid var(--line)}
+.tabs button{flex:1;background:none;border:0;color:var(--mut);padding:10px 2px 12px;font:inherit;font-size:12px;display:flex;flex-direction:column;align-items:center;gap:2px}
+.tabs button span{font-size:22px}
+.tabs button.on{color:var(--gold);font-weight:700}
+.box{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px;margin-bottom:10px}
+.row{display:flex;align-items:center;gap:10px}
+.row .g{flex:1;min-width:0}
+.t{font-weight:700}.m{color:var(--mut);font-size:13px}
+.btn{background:var(--gold);color:#1a1400;border:0;border-radius:12px;padding:9px 14px;font:inherit;font-weight:700;font-size:14px;white-space:nowrap}
+.btn:disabled{background:var(--line);color:var(--mut)}
+.btn.o{background:none;border:1px solid var(--line);color:var(--tx)}
+.btn.rd{background:var(--red);color:#fff}
+.globe{width:230px;height:230px;border-radius:50%;margin:18px auto;display:flex;align-items:center;justify-content:center;font-size:120px;background:radial-gradient(circle at 35% 30%,#3a4d73,#101826 70%);border:2px solid var(--gold);box-shadow:0 0 40px #f0b94033;touch-action:manipulation;cursor:pointer}
+.globe:active{transform:scale(.95)}
+.pop{position:fixed;font-weight:800;color:var(--gold);pointer-events:none;animation:up .8s forwards;direction:ltr;z-index:9;text-shadow:0 1px 3px #000}
+@keyframes up{to{transform:translateY(-70px);opacity:0}}
+.chips{display:flex;gap:8px;margin-bottom:10px}
+.chips button{flex:1;padding:9px;border-radius:12px;border:1px solid var(--line);background:var(--card);color:var(--mut);font:inherit}
+.chips button.on{background:var(--gold);color:#1a1400;font-weight:700}
+.em{font-size:34px;width:46px;text-align:center}
+.up{color:var(--grn)}.dn{color:var(--red)}
+.bar{height:8px;background:var(--line);border-radius:6px;overflow:hidden;margin:8px 0}
+.bar i{display:block;height:100%;background:var(--gold)}
+.toast{position:fixed;top:calc(env(safe-area-inset-top,0px) + 12px);left:50%;transform:translateX(-50%);background:var(--gold);color:#1a1400;padding:10px 16px;border-radius:14px;font-weight:700;z-index:20;max-width:90%;text-align:center}
+h3{margin:14px 4px 8px}.rk{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:16px;margin-bottom:8px;border:1px solid var(--line);background:#131c2bcc}.rk .n{width:30px;height:30px;border-radius:50%;background:var(--line);display:flex;align-items:center;justify-content:center;font-weight:800}.rk .nm{flex:1}.rk b{color:var(--grn);direction:ltr}.g1{background:linear-gradient(90deg,#3a2f10,#131c2b);border-color:#f0b940}.g1 .n{background:#f0b940;color:#1a1400}.g2{border-color:#cfd4dc}.g2 .n{background:#cfd4dc;color:#111}.g3{border-color:#cd8a55}.g3 .n{background:#cd8a55;color:#111}.g4{border-color:#1f6f4d;background:#102a22cc}.g4 .n{background:#2f9e6b}.me{outline:2px solid var(--gold)}.zone{text-align:center;color:var(--grn);margin:10px 0;font-weight:700}select{padding:10px;border-radius:12px;background:#0c1220;color:var(--tx);border:1px solid var(--line);font-size:18px}.chips.sc{overflow-x:auto}.chips.sc button{flex:0 0 auto;white-space:nowrap;padding:9px 14px}.box{background:#131c2bcc;backdrop-filter:blur(6px)}input{width:100%;padding:11px;border-radius:12px;border:1px solid var(--line);background:#0c1220;color:var(--tx);font:inherit;margin:8px 0;direction:ltr;text-align:center}
+</style>
+</head>
+<body>
+<div class="hdr"><div class="nw" id="nw"></div><div class="r"><span id="ph"></span><span id="pc"></span></div><small id="lv"></small></div>
+<main id="main"></main>
+<nav class="tabs" id="tabs"></nav>
+<div id="ov" style="display:none;position:fixed;inset:0;z-index:50;background:#05080f;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:24px;text-align:center"><div style="font-size:80px">👑</div><h2 style="margin:0">إمبراطور النقر</h2><div class="m">سجّل الدخول لحفظ تقدمك والمنافسة عالمياً</div><button class="btn" id="gb" style="padding:14px 24px;font-size:16px">🔐 الدخول بحساب جوجل</button><button class="btn o" id="gs">العب كضيف</button><div id="er" class="m"></div></div>
+
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script>
+const $=id=>document.getElementById(id);
+const TABS=[['me','👤','ملفي'],['col','🏆','المقتنيات'],['world','🌍','العالم'],['inv','📈','استثمر'],['stk','📊','البورصة'],['rank','🏅','التصنيف']];
+const ASSETS=[
+['k','b','🏪','كشك حي',15,.1],['s','b','🛒','سوق شعبي',150,1],['m','b','🏬','متجر',1500,8],['sm','b','🏢','سوبرماركت',15000,60],
+['w','i','🔧','ورشة',1e5,450],['f','i','🏭','مصنع',1.5e6,3000],['e','i','🔌','مصنع إلكترونيات',2e7,20000],['o','i','🛢️','مصفاة نفط',3e8,150000],
+['a','r','🏠','شقة',1e7,4e4],['bd','r','🏘️','عمارة',2e8,7e5],['t','r','🏙️','برج',5e9,1.5e7],['c','r','🌆','مدينة كاملة',2e11,5e8]];
+const CATS={b:'الأعمال',i:'الصناعات',r:'العقارات'};
+const COLL=[['car','🚗','سيارة فاخرة',5e6,2],['wt','⌚','ساعة نادرة',2e7,3],['ph','📱','هاتف ذهبي',1e8,4],['jw','💎','عقد زمرد',2e9,6],['yt','🛥️','يخت',5e9,8],['art','🗿','تحفة فنية',1e10,10],['jet','✈️','طائرة خاصة',5e10,15]];
+const STK=[['NVZ','Nvizia',13,.06],['VLT','Volt Motors',6,.07],['LNB','Lion Bank',10,.05],['SLR','Solaris Energy',3,.09]];
+const CONT=[['af','أفريقيا','🌍',0,1],['sa','أمريكا الجنوبية','🌎',2e6,1.6],['as','آسيا','🌏',5e7,2.8],['eu','أوروبا','🏰',1e9,5],['na','أمريكا الشمالية','🗽',2e10,9],['oc','أستراليا وأوقيانوسيا','🦘',5e11,16],['an','القارة القطبية','🐧',5e12,30]];
+const CM=Object.fromEntries(CONT.map(c=>[c[0],c[4]]));
+const CODES={WELCOME:1e6,KING:1e8,EMPIRE:1e10};
+function unlockBox(){const c=CONT.find(x=>x[0]==S.cur);return`<div class="box"><div class="row"><div class="em">${c[2]}</div><div class="g"><div class="t">${c[1]} مغلقة</div><div class="m">افتحها للاستثمار فيها · دخل ×${c[4]}</div></div><button class="btn" data-unl="${c[0]}" ${S.cash<c[3]?'disabled':''}>${f(c[3])}</button></div></div>`}
+const BOTS=[['Mimmo10','🇮🇹',1.44e12],['tonho1994','🇧🇷',1.15e12],['Kozul','🇵🇭',8.6e11],['Ruin7','🇯🇵',5.7e11],['bidou','🇩🇿',5.7e11],['Bravo','🇸🇩',3e11],['RedQuartz','🇻🇳',1.2e11],['VRodriguez','🇵🇾',6e10],['BlueSage','🇸🇪',2e10],['Nile','🇪🇬',8e9],['Falcon','🇸🇦',3e9],['Sultan','🇸🇦',9e8],['Ankara','🇹🇷',4e8],['Atlas','🇲🇦',1e8],['Seoul','🇰🇷',3e7],['Pierre','🇫🇷',9e6],['Hans','🇩🇪',2e6],['Sam','🇺🇸',5e5],['Raj','🇮🇳',1e5],['Maple','🇨🇦',2e4],['Najd','🇸🇦',5e3],['Omar','🇪🇬',1e3]];
+const ACH=[['a1','🥉','أول مليون',()=>S.cash+stockVal()>=1e6],['a2','🥈','مليار دولار',()=>S.cash+stockVal()>=1e9],['a3','🥇','تريليون دولار',()=>S.cash+stockVal()>=1e12],['a4','🌍','افتح 5 قارات',()=>Object.keys(S.cont).length>=5],['a5','💎','كل المقتنيات',()=>Object.keys(S.col).length>=COLL.length],['a6','👑','أول برستيج',()=>S.rs>=1]];
+const MIS=[['انقر 200 مرة',()=>P.d.c>=200],['اشترِ 10 أصول',()=>P.d.b>=10]];
+function day(){const k=new Date().toDateString();if(P.d.day!=k)P.d={day:k,c:0,b:0,cl:{}}}
+function mgBox(){const c=1e7*CM[S.cur];return S.mg[S.cur]?'<div class="m" style="margin-bottom:8px">🤵 المدير يشتري لك تلقائياً</div>':`<div class="box"><div class="row"><div class="em">🤵</div><div class="g"><div class="t">مدير القارة</div><div class="m">يشتري أفضل أصل تلقائياً</div></div><button class="btn" data-mg="1" ${S.cash<c?'disabled':''}>${f(c)}</button></div></div>`}
+function meExtra(){day();const rw=Math.max(5000,ips()*1800);return`<div class="box"><div class="t">📅 مهام اليوم</div>`+MIS.map((m,i)=>`<div class="row" style="margin-top:8px"><div class="g">${m[0]}</div><button class="btn" data-m="${i}" ${P.d.cl[i]||!m[1]()?'disabled':''}>${P.d.cl[i]?'✓':f(rw)}</button></div>`).join('')+`</div><div class="box"><div class="t">🏆 الإنجازات</div>`+ACH.map(a=>`<div class="row" style="margin-top:8px"><div class="em" style="font-size:24px;width:34px">${a[1]}</div><div class="g">${a[2]}</div><span class="${P.ach[a[0]]?'up':'m'}">${P.ach[a[0]]?'✓':'🔒'}</span></div>`).join('')+`</div>`}
+const SC=1e5;
+let S,tab='world',cat='b',down=false,boostEnd=0,evEnd=0,rk='l';
+function fresh(){return{mg:{},cont:{af:1},cur:'af',used:{},cash:0,run:0,clk:0,own:{},col:{},pts:0,rs:0,boostCd:0,gift:0,seen:Date.now(),
+ stk:STK.map(x=>({id:x[0],p:x[2]*SC,h:0,hist:[x[2]*SC]}))}}
+try{S=JSON.parse(localStorage.getItem('emp1'))}catch(e){}
+if(!S||!S.stk)S=fresh();
+if(!S.cont){S.cont={af:1};S.cur='af';const o={};for(const k in S.own)o['af.'+k]=S.own[k];S.own=o}
+S.used=S.used||{};S.mg=S.mg||{};
+var P;try{P=JSON.parse(localStorage.getItem('emp1p'))}catch(e){}P=P||{t0:Date.now(),name:'دوق',flag:'🇸🇦',ach:{},d:{day:'',c:0,b:0,cl:{}}};
+function save(){S.seen=Date.now();try{localStorage.setItem('emp1',JSON.stringify(S));localStorage.setItem('emp1p',JSON.stringify(P))}catch(e){}}
+function f(n){const u=['','K','M','B','T','Qa'];let i=0;while(n>=1000&&i<5){n/=1000;i++}return '$'+(i==0?(n<10?n.toFixed(1):n.toFixed(0)):n>=100?n.toFixed(0):n.toFixed(2))+u[i]}
+function bonus(){let b=0;COLL.forEach(c=>{if(S.col[c[0]])b+=c[4]/100});return b}
+function mult(){return(1+.15*S.pts)*(1+bonus())*(Date.now()<boostEnd?2:1)*(Date.now()<evEnd?2:1)}
+function ips(){let s=0;for(const k in S.own){const p=k.split('.'),a=ASSETS.find(x=>x[0]==p[1]);if(a)s+=S.own[k]*a[5]*CM[p[0]]}return s*mult()}
+function cost(a){return Math.ceil(a[4]*CM[S.cur]*Math.pow(1.15,S.own[S.cur+'.'+a[0]]||0))}
+function clickVal(){return Math.pow(1.45,S.clk)*mult()+ips()*.03}
+function stockVal(){return S.stk.reduce((t,x)=>t+x.h*x.p,0)}
+function earn(v){S.cash+=v;S.run+=v}
+function toast(t){const d=document.createElement('div');d.className='toast';d.textContent=t;document.body.appendChild(d);setTimeout(()=>d.remove(),2600)}
+function head(){$('nw').textContent=f(S.cash+stockVal());$('ph').textContent='+'+f(ips()*3600)+' / ساعة';$('pc').textContent='+'+f(clickVal())+' / نقرة';$('lv').textContent='برستيج '+S.rs+' · نقاط الإمبراطورية: '+S.pts+(Date.now()<boostEnd?' · ⚡ ×2 مفعّل':'')}
+function nav(){$('tabs').innerHTML=TABS.map(t=>`<button class="${t[0]==tab?'on':''}" data-tab="${t[0]}"><span>${t[1]}</span>${t[2]}</button>`).join('')}
+function spark(h,up){const mx=Math.max(...h),mn=Math.min(...h),r=(mx-mn)||1;const pts=h.map((v,i)=>(i*(80/Math.max(h.length-1,1))).toFixed(1)+','+(28-(v-mn)/r*26).toFixed(1)).join(' ');return`<svg width="80" height="30" viewBox="0 0 80 30"><polyline fill="none" stroke="${up?'#3ddc97':'#ef6b5f'}" stroke-width="2" points="${pts}"/></svg>`}
+function view(){
+ let h='';
+ if(tab=='world'){
+  const bl=Math.max(0,boostEnd-Date.now()),cd=Math.max(0,S.boostCd-Date.now()),gd=Math.max(0,S.gift-Date.now());
+  const cc=Math.ceil(50*Math.pow(2.2,S.clk));
+  h=`<div class="row" style="margin-top:6px"><button class="btn o" data-a="gift" ${gd?'disabled':''}>🎁 ${gd?Math.ceil(gd/60000)+' د':'هدية'}</button><button class="btn" style="flex:1" data-a="boost" ${(bl||cd)?'disabled':''}>⚡ ×2 لكل نقرة · ${bl?Math.ceil(bl/1000)+'ث':cd?'انتظر '+Math.ceil(cd/1000)+'ث':'60 ثانية'}</button></div>
+  <div class="globe" id="globe">🌍</div><div class="m" style="text-align:center">انقر للربح</div>
+  <div class="box" style="margin-top:14px"><div class="row"><div class="g"><div class="t">💪 قوة النقر · مستوى ${S.clk}</div><div class="m">النقرة القادمة: ${f(Math.pow(1.45,S.clk+1)*mult()+ips()*.03)}</div></div><button class="btn" data-a="clk" ${S.cash<cc?'disabled':''}>${f(cc)}</button></div></div>`;
+ }
+ if(tab=='inv'){
+  h=`<div class="chips sc">${CONT.map(c=>`<button class="${c[0]==S.cur?'on':''}" data-cur="${c[0]}">${c[2]} ${c[1]}${S.cont[c[0]]?'':' 🔒'}</button>`).join('')}</div>`+(S.cont[S.cur]?mgBox():unlockBox())+`<div class="chips">${Object.keys(CATS).map(k=>`<button class="${k==cat?'on':''}" data-cat="${k}">${CATS[k]}</button>`).join('')}</div>`+
+  (S.cont[S.cur]?ASSETS:[]).filter(a=>a[1]==cat).map(a=>{const n=S.own[S.cur+'.'+a[0]]||0,c=cost(a);return`<div class="box"><div class="row"><div class="em">${a[2]}</div><div class="g"><div class="t">${a[3]} <span class="m">× ${n}</span></div><div class="m">+${f(a[5]*CM[S.cur]*mult()*3600)} / ساعة لكل وحدة</div></div><button class="btn" data-buy="${a[0]}" ${S.cash<c?'disabled':''}>${f(c)}</button></div></div>`}).join('');
+ }
+ if(tab=='stk'){
+  const val=stockVal(),cost0=S.stk.reduce((t,x)=>t+x.h*(x.c||0),0),pl=val-cost0;
+  h=`<div class="box"><div class="row"><div class="g"><div class="m">المحفظة</div><div class="t" style="font-size:22px">${f(val)}</div></div><div style="text-align:left"><div class="m">الربح / الخسارة</div><div class="t ${pl>=0?'up':'dn'}" style="direction:ltr">${pl>=0?'+':'-'}${f(Math.abs(pl))}</div></div></div></div><div class="m" style="margin:0 4px 8px">اشترِ بسعر منخفض، وبِع بسعر مرتفع</div>`+
+  S.stk.map((x,i)=>{const hh=x.hist,ch=(x.p/hh[0]-1)*100,up=x.p>=hh[Math.max(0,hh.length-2)];return`<div class="box"><div class="row"><div class="g"><div class="t">${STK[i][1]} <span class="m">${x.id}</span></div><div class="m">لديك ${x.h.toFixed(0)} سهم</div></div>${spark(hh,ch>=0)}<div style="text-align:left"><div class="t">${f(x.p)}</div><div class="${ch>=0?'up':'dn'}" style="direction:ltr;font-size:13px">${ch>=0?'+':''}${ch.toFixed(1)}%</div></div></div>
+  <div class="row" style="margin-top:10px"><button class="btn" style="flex:1" data-sb="${i}" ${S.cash<x.p?'disabled':''}>شراء 10%</button><button class="btn rd" style="flex:1" data-ss="${i}" ${x.h<1?'disabled':''}>بيع الكل</button></div></div>`}).join('');
+ }
+ if(tab=='col'){
+  h=`<div class="box"><div class="t">مجموعة المقتنيات</div><div class="m">${Object.keys(S.col).length} / ${COLL.length} مملوك · بونص الدخل +${(bonus()*100).toFixed(0)}%</div></div>`+
+  COLL.map(c=>`<div class="box"><div class="row"><div class="em">${c[1]}</div><div class="g"><div class="t">${c[2]}</div><div class="m">+${c[4]}% دخل دائم</div></div>${S.col[c[0]]?'<span class="up t">✓ مملوك</span>':`<button class="btn" data-col="${c[0]}" ${S.cash<c[3]?'disabled':''}>${f(c[3])}</button>`}</div></div>`).join('');
+ }
+ if(tab=='rank'){const nw=S.cash+stockVal(),FL=['🇸🇦','🇪🇬','🇮🇶','🇦🇪','🇩🇿','🇲🇦','🇸🇩','🇹🇷','🇺🇸','🇫🇷'];
+ let L=BOTS.map(b=>({n:b[0],fl:b[1],v:b[2]*(1+(Date.now()-P.t0)/72e6)}));L.push({n:P.name,fl:P.flag,v:nw,me:1});L.sort((a,b)=>b.v-a.v);L.forEach((x,i)=>x.r=i+1);
+ if(rk=='c')L=L.filter(x=>x.fl==P.flag);
+ if(rk=='l'){const i=L.findIndex(x=>x.me),s=Math.max(0,Math.min(i-4,L.length-10));L=L.slice(s,s+10)}
+ const cl=['g1','g2','g3','g4','g4'];
+ h=`<div class="box"><div class="row"><input id="nm" value="${P.name}" maxlength="14" style="margin:0;flex:1"><select id="fl">${FL.map(x=>`<option ${x==P.flag?'selected':''}>${x}</option>`).join('')}</select></div></div><div class="chips">${[['l','الدوري'],['c','البلد'],['w','العالم']].map(x=>`<button class="${x[0]==rk?'on':''}" data-rk="${x[0]}">${x[1]}</button>`).join('')}</div>`+L.map(x=>{const zn=x.r==6&&rk!='c'?'<div class="zone">⌃ منطقة الصعود ⌃</div>':'';return zn+`<div class="rk ${rk=='c'?'':cl[x.r-1]||''}${x.me?' me':''}"><span class="n">${x.r}</span><span class="nm">${x.fl} ${x.n}</span><b>${f(x.v)}</b></div>`}).join('')+`<div class="m" style="text-align:center;margin:8px">اللاعبون الآخرون محاكاة حتى يُربط التطبيق بالسحابة</div>`}
+ if(tab=='me'){
+  const g=Math.floor(Math.sqrt(S.run/1e8)),pr=Math.min(100,S.run/1e8*100);
+  h=`<div class="box"><div class="row"><div class="em">🏅</div><div class="g"><div class="t">البرستيج ${S.rs}</div><div class="m">${S.pts} نقطة إمبراطورية · +${S.pts*15}% دخل دائم</div></div></div>
+  <div class="m" style="margin-top:10px">أرباح هذه الجولة: ${f(S.run)}</div><div class="bar"><i style="width:${pr}%"></i></div>
+  <button class="btn" style="width:100%" data-a="prest" ${g<1?'disabled':''}>${g<1?'🔒 اجمع $100M لفتح البرستيج':'بع الإمبراطورية واكسب '+g+' نقطة'}</button>
+  <div class="m" style="margin-top:8px">إعادة الضبط تمسح المال والأعمال والأسهم، وتُبقي المقتنيات والنقاط.</div></div>
+  <div class="box"><div class="t">إحصائيات</div><div class="m">الدخل: ${f(ips())} / ثانية<br>مضاعف الدخل: ×${mult().toFixed(2)}</div></div>
+  ${meExtra()}<div class="box"><div class="t">🎟️ كود هدية</div><input id="code" placeholder="اكتب الكود"><button class="btn" style="width:100%" data-a="redeem">استلم</button></div>
+  <button class="btn o" style="width:100%" data-a="reset">🗑️ حذف كل التقدم</button>`;
+ }
+ $('main').innerHTML=h;
+}
+function render(){head();nav();view()}
+document.addEventListener('pointerdown',()=>down=true);
+['pointerup','pointercancel'].forEach(e=>document.addEventListener(e,()=>setTimeout(()=>down=false,60)));
+document.addEventListener('click',e=>{
+ const t=e.target.closest('[data-rk],[data-mg],[data-m],[data-cur],[data-unl],[data-tab],[data-cat],[data-buy],[data-sb],[data-ss],[data-col],[data-a],#globe');if(!t)return;
+ const d=t.dataset;
+ if(t.id=='globe'){const v=clickVal();earn(v);P.d.c++;navigator.vibrate&&navigator.vibrate(8);const p=document.createElement('div');p.className='pop';p.textContent='+'+f(v);p.style.left=(e.clientX-20)+'px';p.style.top=(e.clientY-30)+'px';document.body.appendChild(p);setTimeout(()=>p.remove(),800);head();return}
+ if(d.tab)tab=d.tab;
+ if(d.cat)cat=d.cat;
+ if(d.cur)S.cur=d.cur;
+ if(d.rk)rk=d.rk;
+ if(d.mg){const c=1e7*CM[S.cur];if(S.cash>=c){S.cash-=c;S.mg[S.cur]=1}}
+ if(d.m!==undefined){const i=+d.m;if(MIS[i][1]()&&!P.d.cl[i]){P.d.cl[i]=1;earn(Math.max(5000,ips()*1800));toast('🎉 مكافأة المهمة')}}
+ if(d.unl){const c=CONT.find(x=>x[0]==d.unl);if(S.cash>=c[3]){S.cash-=c[3];S.cont[c[0]]=1;toast('🌍 تم فتح '+c[1])}}
+ if(d.buy){const a=ASSETS.find(x=>x[0]==d.buy),c=cost(a);if(S.cash>=c){S.cash-=c;S.own[S.cur+'.'+a[0]]=(S.own[S.cur+'.'+a[0]]||0)+1;P.d.b++}}
+ if(d.col){const c=COLL.find(x=>x[0]==d.col);if(S.cash>=c[3]){S.cash-=c[3];S.col[c[0]]=1}}
+ if(d.sb!==undefined){const x=S.stk[d.sb],amt=S.cash*.1,n=amt/x.p;if(n>0){x.c=((x.c||0)*x.h+amt)/(x.h+n);x.h+=n;S.cash-=amt}}
+ if(d.ss!==undefined){const x=S.stk[d.ss];S.cash+=x.h*x.p;x.h=0;x.c=0}
+ if(d.a=='clk'){const c=Math.ceil(50*Math.pow(2.2,S.clk));if(S.cash>=c){S.cash-=c;S.clk++}}
+ if(d.a=='redeem'){const k=($('code').value||'').trim().toUpperCase(),v=CODES[k];if(!v)toast('❌ كود غير صالح');else if(S.used[k])toast('⚠️ استُخدم من قبل');else{S.used[k]=1;earn(v);toast('🎉 حصلت على '+f(v))}}
+ if(d.a=='boost'){boostEnd=Date.now()+60000;S.boostCd=Date.now()+180000}
+ if(d.a=='gift'){const v=Math.max(100,ips()*600);earn(v);S.gift=Date.now()+4*3600000;toast('🎁 حصلت على '+f(v))}
+ if(d.a=='prest'){const g=Math.floor(Math.sqrt(S.run/1e8));if(g>=1&&confirm('بيع الإمبراطورية مقابل '+g+' نقطة؟')){const k=S.col,u=S.used,p=S.pts+g,r=S.rs+1;S=fresh();S.used=u;S.col=k;S.pts=p;S.rs=r;toast('برستيج '+r+' 👑')}}
+ if(d.a=='reset'&&confirm('حذف كل التقدم؟')){S=fresh()}
+ save();render();
+});
+setInterval(()=>{earn(ips()/4);head()},250);
+setInterval(()=>{
+ S.stk.forEach((x,i)=>{const b=STK[i][2]*SC,v=STK[i][3];x.p=Math.max(b*.2,x.p*(1+(Math.random()-.5)*2*v+(b-x.p)/b*.03));x.hist.push(x.p);if(x.hist.length>30)x.hist.shift()});
+ day();ACH.forEach(a=>{if(!P.ach[a[0]]&&a[3]()){P.ach[a[0]]=1;earn(Math.max(1e5,ips()*3600));toast('🏆 إنجاز: '+a[2])}});
+ if(!down&&!/INPUT|SELECT/.test(document.activeElement.tagName)&&(tab=='stk'||tab=='inv'||tab=='world'||tab=='col'||tab=='rank'))view();
+},2000);
+setInterval(save,5000);
+setInterval(()=>{const r=Math.floor(Math.random()*4);if(r==0){evEnd=Date.now()+30000;toast('📈 طفرة اقتصادية! دخل ×2 لمدة 30 ثانية')}else if(r==1){S.stk.forEach(x=>x.p*=.75);toast('📉 أزمة في البورصة... فرصة للشراء!')}else if(r==2){S.stk.forEach(x=>x.p*=1.3);toast('🚀 انتعاش في البورصة!')}else{const v=Math.max(5000,ips()*300);earn(v);toast('🎁 مستثمر أجنبي منحك '+f(v))}},90000);
+setInterval(()=>{for(const c in S.mg){let best,br=1e99;ASSETS.forEach(a=>{const k=Math.ceil(a[4]*CM[c]*Math.pow(1.15,S.own[c+'.'+a[0]]||0));if(k<=S.cash*.5&&k/a[5]<br){br=k/a[5];best=[a,k]}});if(best){S.cash-=best[1];const key=c+'.'+best[0][0];S.own[key]=(S.own[key]||0)+1}}},4000);
+document.addEventListener('change',e=>{if(e.target.id=='nm')P.name=e.target.value.slice(0,14)||'دوق';if(e.target.id=='fl')P.flag=e.target.value;save();render()});
+const away=Math.min((Date.now()-S.seen)/1000,8*3600);
+if(away>30&&ips()>0){const v=ips()*away*.5;earn(v);toast('أثناء غيابك ربحت '+f(v)+' 💰')}
+const ADMIN='abdomahrez2007@gmail.com';
+const FBC={apiKey:"AIzaSyC3BOacpJnyJ7W0lk3TWLPsoMwQlpmpKIo",authDomain:"empror-clicker.firebaseapp.com",projectId:"empror-clicker",storageBucket:"empror-clicker.firebasestorage.app",messagingSenderId:"894338765899",appId:"1:894338765899:web:17b72908c7ba58a0ede9ce"};
+let user=null,isAdmin=false,loaded=false,CL=[],lastCS=0,auth=null,db=null;
+const FLG=['🇸🇦','🇪🇬','🇮🇶','🇦🇪','🇩🇿','🇲🇦','🇸🇩','🇹🇷','🇺🇸','🇫🇷'];
+const E=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+P.gc=P.gc||{};
+if(typeof firebase!=='undefined'){firebase.initializeApp(FBC);auth=firebase.auth();db=firebase.firestore()}
+let PUB=null;
+async function cloudSave(force){if(!user||!db||!loaded)return;const n=Date.now();if(!force&&n-lastCS<30000)return;lastCS=n;const T=firebase.firestore.FieldValue.serverTimestamp();
+try{await db.collection('saves').doc(user.uid).set({state:JSON.stringify({S:S,P:P}),updated:T})}catch(e){}
+const raw=Math.max(0,S.cash+stockVal());let sc=raw;if(!PUB)sc=Math.min(raw,9e11);else{const c=Math.min((n-PUB.t)/1000,28800);sc=Math.min(raw,PUB.score*(1+.027*c)+2700*c)}
+if(PUB&&n-PUB.t<12000)return;
+try{await db.collection('leaderboard').doc(user.uid).set({name:P.name,flag:P.flag,score:sc,updated:T});PUB={score:sc,t:n}}catch(e){}}
+const _s=save;save=function(){_s();cloudSave()};
+setInterval(()=>cloudSave(),30000);
+document.addEventListener('visibilitychange',()=>{if(document.hidden){_s();cloudSave(true)}});
+async function loadRank(){if(!user)return;try{const q=await db.collection('leaderboard').orderBy('score','desc').limit(50).get();CL=q.docs.map(d=>Object.assign({id:d.id},d.data()));if(tab=='rank'&&!down&&!/INPUT|SELECT/.test(document.activeElement.tagName))view()}catch(e){}}
+async function pollGifts(){if(!user)return;const T=(user.email||'').toLowerCase();const run=async(ref,del)=>{try{const q=await ref.orderBy('created','desc').limit(30).get();for(const d of q.docs){const x=d.data(),t=x.created?x.created.toMillis():Date.now();if(P.gc[d.id]||t<P.t0)continue;P.gc[d.id]=1;try{if(del)await d.ref.delete();else await d.ref.collection('claims').doc(user.uid).set({t:firebase.firestore.FieldValue.serverTimestamp()});earn(x.amount);toast('🎁 هدية من الإدارة: '+f(x.amount))}catch(e){}}}catch(e){}};await run(db.collection('gifts'),0);await run(db.collection('mail').doc(T).collection('gifts'),1)}
+setInterval(()=>{loadRank();pollGifts()},30000);
+function rankCloud(){const nw=S.cash+stockVal();let L=CL.map(x=>({n:x.name,fl:x.flag,v:x.id==user.uid?nw:x.score,me:x.id==user.uid}));if(!L.find(x=>x.me))L.push({n:P.name,fl:P.flag,v:nw,me:1});L.sort((a,b)=>b.v-a.v);L.forEach((x,i)=>x.r=i+1);
+if(rk=='c')L=L.filter(x=>x.fl==P.flag);
+if(rk=='l'){const i=L.findIndex(x=>x.me),s=Math.max(0,Math.min(i-4,L.length-10));L=L.slice(s,s+10)}
+const cl=['g1','g2','g3','g4','g4'];
+$('main').innerHTML=`<div class="box"><div class="row"><input id="nm" value="${E(P.name)}" maxlength="14" style="margin:0;flex:1"><select id="fl">${FLG.map(x=>`<option ${x==P.flag?'selected':''}>${x}</option>`).join('')}</select></div></div><div class="chips">${[['l','الدوري'],['c','البلد'],['w','العالم']].map(x=>`<button class="${x[0]==rk?'on':''}" data-rk="${x[0]}">${x[1]}</button>`).join('')}</div>`+L.map(x=>{const zn=x.r==6&&rk!='c'?'<div class="zone">⌃ منطقة الصعود ⌃</div>':'';return zn+`<div class="rk ${rk=='c'?'':cl[x.r-1]||''}${x.me?' me':''}"><span class="n">${x.r}</span><span class="nm">${E(x.fl)} ${E(x.n)}</span><b>${f(x.v)}</b></div>`}).join('')}
+function adminHTML(){return`<div class="box"><div class="t">⚙️ لوحة الأدمن</div><div class="m">${E(user.email)}</div></div>
+<div class="box"><div class="t">💰 أموالي</div><input id="am" placeholder="المبلغ مثل 1e12"><div class="row"><button class="btn" style="flex:1" data-ad="add">إضافة</button><button class="btn o" style="flex:1" data-ad="set">تعيين</button></div></div>
+<div class="box"><div class="t">🎁 إرسال هدية</div><input id="gm" placeholder="المبلغ مثل 5e12"><input id="gt" placeholder="فارغ = للجميع، أو اكتب بريد اللاعب"><button class="btn" style="width:100%" data-ad="gift">إرسال الهدية</button></div>
+<div class="box"><div class="t">🎟️ إنشاء كود</div><input id="cc" placeholder="الكود مثل SUMMER"><input id="ca" placeholder="المبلغ مثل 1e13"><button class="btn" style="width:100%" data-ad="code">إنشاء الكود</button></div>`}
+const _v=view;view=function(){if(tab=='admin'&&isAdmin){$('main').innerHTML=adminHTML();return}if(tab=='rank'&&user&&CL.length){rankCloud();return}_v()};
+document.addEventListener('click',async e=>{const b=e.target.closest('[data-ad]');if(!b||!isAdmin)return;const a=b.dataset.ad,g=id=>($(id).value||'').trim();
+if(a=='add'||a=='set'){const v=Number(g('am'));if(!isFinite(v)||g('am')=='')return toast('رقم غير صحيح');if(a=='add')earn(v);else S.cash=v;toast('✓ تم');head();save()}
+if(a=='gift'){const v=Number(g('gm')),to=g('gt').toLowerCase();if(!(v>0))return toast('مبلغ غير صحيح');try{await(to?db.collection('mail').doc(to).collection('gifts'):db.collection('gifts')).add({amount:v,created:firebase.firestore.FieldValue.serverTimestamp()});toast('🎁 أُرسلت الهدية')}catch(x){toast('❌ فشل: '+x.code)}}
+if(a=='code'){const k=g('cc').toUpperCase(),v=Number(g('ca'));if(!k||!(v>0))return toast('بيانات غير صحيحة');try{await db.collection('codes').doc(k).set({amount:v});toast('🎟️ أُنشئ الكود '+k)}catch(x){toast('❌ فشل: '+x.code)}}
+});
+document.addEventListener('click',async e=>{const t=e.target.closest('[data-a="redeem"]');if(!t)return;e.stopPropagation();const k=($('code').value||'').trim().toUpperCase().replace(/[^A-Z0-9_-]/g,'');if(!k)return;if(!user)return toast('سجّل الدخول لاستخدام الأكواد');try{const d=await db.collection('codes').doc(k).get();if(!d.exists)return toast('❌ كود غير صالح');await d.ref.collection('redeemed').doc(user.uid).set({t:firebase.firestore.FieldValue.serverTimestamp()});earn(d.data().amount);toast('🎉 حصلت على '+f(d.data().amount));save();head()}catch(x){toast('⚠️ الكود مستخدم أو غير صالح')}},true);
+document.addEventListener('click',e=>{if(e.target.id=='so'){_s();cloudSave(true).then(()=>auth.signOut()).then(()=>location.reload())}});
+if(auth){
+ $('gb').onclick=async()=>{const pr=new firebase.auth.GoogleAuthProvider();try{await auth.signInWithPopup(pr)}catch(e){if(e.code=='auth/popup-blocked'||e.code=='auth/operation-not-supported-in-this-environment')auth.signInWithRedirect(pr);else $('er').textContent='خطأ: '+(e.code||e.message)}};
+ $('gs').onclick=()=>{$('ov').style.display='none'};
+ auth.onAuthStateChanged(async u=>{user=u;if(!u){$('ov').style.display='flex';return}
+  $('ov').style.display='none';isAdmin=u.email==ADMIN&&u.emailVerified;
+  if(isAdmin&&!TABS.find(t=>t[0]=='admin'))TABS.push(['admin','⚙️','الأدمن']);
+  try{const d=await db.collection('saves').doc(u.uid).get();if(d.exists){const c=JSON.parse(d.data().state);S=c.S;P=c.P;S.used=S.used||{};S.mg=S.mg||{};P.gc=P.gc||{};toast('☁️ تم تحميل تقدمك')}const p=await db.collection('leaderboard').doc(u.uid).get();if(p.exists){const x=p.data();PUB={score:x.score,t:x.updated.toMillis()}}}catch(e){toast('تعذر تحميل البيانات')}
+  loaded=true;document.querySelector('.hdr').insertAdjacentHTML('beforeend','<div class="m" style="margin-top:6px">☁️ متصل <button class="btn o" id="so" style="padding:3px 10px;font-size:12px">خروج</button></div>');
+  await cloudSave(true);loadRank();pollGifts();render()});
+}
+if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
+
+render();
+</script>
+</body>
+</html>
