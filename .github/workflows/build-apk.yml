@@ -30,16 +30,29 @@ jobs:
       - name: Initialize Capacitor and Build APK
         run: |
           npm init -y
-          npm install @capacitor/core@6 @capacitor/cli@6 @capacitor/android@6
+          npm install @capacitor/core@6 @capacitor/cli@6 @capacitor/android@6 @capacitor/app@6 @capacitor/browser@6
           npx cap init "Emperor" "com.emperor.game" --web-dir="www"
+          python3 - << 'PY'
+          import json
+          c = json.load(open('capacitor.config.json'))
+          c['server'] = {'url': 'https://abdeasm.github.io/emperor/'}
+          json.dump(c, open('capacitor.config.json', 'w'))
+          PY
           npx cap add android
+          python3 - << 'PY'
+          p = 'android/app/src/main/AndroidManifest.xml'
+          s = open(p).read()
+          f = '<intent-filter><action android:name="android.intent.action.VIEW"/><category android:name="android.intent.category.DEFAULT"/><category android:name="android.intent.category.BROWSABLE"/><data android:scheme="emperorgame" android:host="auth"/></intent-filter>'
+          assert '</activity>' in s
+          open(p, 'w').write(s.replace('</activity>', f + '</activity>', 1))
+          PY
           npx cap sync android
-          cat << 'EOF' >> android/app/build.gradle
+          cat << 'EOF2' >> android/app/build.gradle
 
           dependencies {
               implementation(platform("org.jetbrains.kotlin:kotlin-bom:1.8.22"))
           }
-          EOF
+          EOF2
           cd android
           chmod +x gradlew
           ./gradlew assembleDebug
