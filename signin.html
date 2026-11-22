@@ -1,0 +1,12 @@
+<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>تسجيل الدخول</title>
+<script src="https://accounts.google.com/gsi/client" async defer></script>
+<style>body{margin:0;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;background:#05080f;color:#f2f4f8;font-family:system-ui,sans-serif;text-align:center;padding:24px}#back{display:none;background:#f0b940;color:#1a1400;padding:14px 26px;border-radius:12px;font-weight:700;text-decoration:none;font-size:17px}</style></head>
+<body><div style="font-size:70px">👑</div><h2 style="margin:0">إمبراطور النقر</h2><p id="m">سجّل الدخول بحساب جوجل ثم ارجع إلى اللعبة</p><div id="g"></div><a id="back">↩ العودة إلى اللعبة</a>
+<script>
+function init(){if(!(window.google&&google.accounts&&google.accounts.id))return setTimeout(init,300);
+google.accounts.id.initialize({client_id:'894338765899-es9ssn7e63al75o7a099ef3ldsh8g068.apps.googleusercontent.com',callback:function(r){var u='emperorgame://auth?t='+encodeURIComponent(r.credential);
+document.getElementById('g').style.display='none';document.getElementById('m').textContent='تم تسجيل الدخول ✓ اضغط الزر للعودة إلى اللعبة';
+var b=document.getElementById('back');b.href=u;b.style.display='inline-block';try{location.href=u}catch(e){}}});
+google.accounts.id.renderButton(document.getElementById('g'),{theme:'filled_black',size:'large',text:'signin_with',locale:'ar',width:260})}
+init();
+</script></body></html>

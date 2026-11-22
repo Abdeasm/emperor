@@ -213,7 +213,11 @@ if(auth){
  let tries=0;function initGSI(){if(!(window.google&&google.accounts&&google.accounts.id)){if(++tries>40){$('er').textContent='تعذر تحميل زر جوجل، تأكد من الاتصال بالإنترنت'}else setTimeout(initGSI,500);return}
  google.accounts.id.initialize({client_id:'894338765899-es9ssn7e63al75o7a099ef3ldsh8g068.apps.googleusercontent.com',callback:async r=>{try{await auth.signInWithCredential(firebase.auth.GoogleAuthProvider.credential(r.credential))}catch(e){$('er').textContent='خطأ: '+(e.code||e.message)}}});
  google.accounts.id.renderButton($('gsi'),{theme:'filled_black',size:'large',text:'signin_with',locale:'ar',width:260})}
- initGSI();
+ const NAT=window.Capacitor&&Capacitor.isNativePlatform&&Capacitor.isNativePlatform();
+ if(NAT){$('gsi').innerHTML='<button class="btn" id="gb" style="padding:14px 24px;font-size:16px">🔐 الدخول بحساب جوجل</button>';
+  $('gb').onclick=()=>Capacitor.Plugins.Browser.open({url:'https://abdeasm.github.io/emperor/signin.html'});
+  Capacitor.Plugins.App.addListener('appUrlOpen',async d=>{const m=/[?&]t=([^&]+)/.exec(d.url||'');if(!m)return;try{Capacitor.Plugins.Browser.close()}catch(e){}try{await auth.signInWithCredential(firebase.auth.GoogleAuthProvider.credential(decodeURIComponent(m[1])))}catch(e){$('er').textContent='خطأ: '+(e.code||e.message)}})}
+ else initGSI();
  $('gs').onclick=()=>{$('ov').style.display='none'};
  auth.onAuthStateChanged(async u=>{user=u;if(!u){$('ov').style.display='flex';return}
   $('ov').style.display='none';isAdmin=u.email==ADMIN&&u.emailVerified;
