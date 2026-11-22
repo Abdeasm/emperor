@@ -25,18 +25,21 @@ jobs:
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: '21'
-
-      - name: Accept Android Licenses
-        run: yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses || true
+          java-version: '17'
 
       - name: Initialize Capacitor and Build APK
         run: |
           npm init -y
-          npm install @capacitor/core @capacitor/cli @capacitor/android
+          npm install @capacitor/core@6 @capacitor/cli@6 @capacitor/android@6
           npx cap init "Emperor" "com.emperor.game" --web-dir="www"
           npx cap add android
           npx cap sync android
+          cat << 'EOF' >> android/app/build.gradle
+
+          dependencies {
+              implementation(platform("org.jetbrains.kotlin:kotlin-bom:1.8.22"))
+          }
+          EOF
           cd android
           chmod +x gradlew
           ./gradlew assembleDebug
