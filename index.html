@@ -46,9 +46,10 @@ h3{margin:14px 4px 8px}.rk{display:flex;align-items:center;gap:10px;padding:12px
 <div class="hdr"><div class="nw" id="nw"></div><div class="r"><span id="ph"></span><span id="pc"></span></div><small id="lv"></small></div>
 <main id="main"></main>
 <nav class="tabs" id="tabs"></nav>
-<div id="ov" style="display:none;position:fixed;inset:0;z-index:50;background:#05080f;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:24px;text-align:center"><div style="font-size:80px">👑</div><h2 style="margin:0">إمبراطور النقر</h2><div class="m">سجّل الدخول لحفظ تقدمك والمنافسة عالمياً</div><button class="btn" id="gb" style="padding:14px 24px;font-size:16px">🔐 الدخول بحساب جوجل</button><button class="btn o" id="gs">العب كضيف</button><div id="er" class="m"></div></div>
+<div id="ov" style="display:none;position:fixed;inset:0;z-index:50;background:#05080f;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:24px;text-align:center"><div style="font-size:80px">👑</div><h2 style="margin:0">إمبراطور النقر</h2><div class="m">سجّل الدخول لحفظ تقدمك والمنافسة عالمياً</div><div id="gsi" style="min-height:44px"></div><button class="btn o" id="gs">العب كضيف</button><div id="er" class="m"></div></div>
 
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://accounts.google.com/gsi/client" async defer></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 <script>
@@ -209,7 +210,10 @@ if(a=='code'){const k=g('cc').toUpperCase(),v=Number(g('ca'));if(!k||!(v>0))retu
 document.addEventListener('click',async e=>{const t=e.target.closest('[data-a="redeem"]');if(!t)return;e.stopPropagation();const k=($('code').value||'').trim().toUpperCase().replace(/[^A-Z0-9_-]/g,'');if(!k)return;if(!user)return toast('سجّل الدخول لاستخدام الأكواد');try{const d=await db.collection('codes').doc(k).get();if(!d.exists)return toast('❌ كود غير صالح');await d.ref.collection('redeemed').doc(user.uid).set({t:firebase.firestore.FieldValue.serverTimestamp()});earn(d.data().amount);toast('🎉 حصلت على '+f(d.data().amount));save();head()}catch(x){toast('⚠️ الكود مستخدم أو غير صالح')}},true);
 document.addEventListener('click',e=>{if(e.target.id=='so'){_s();cloudSave(true).then(()=>auth.signOut()).then(()=>location.reload())}});
 if(auth){
- $('gb').onclick=async()=>{const pr=new firebase.auth.GoogleAuthProvider();try{await auth.signInWithPopup(pr)}catch(e){if(e.code=='auth/popup-blocked'||e.code=='auth/operation-not-supported-in-this-environment')auth.signInWithRedirect(pr);else $('er').textContent='خطأ: '+(e.code||e.message)}};
+ let tries=0;function initGSI(){if(!(window.google&&google.accounts&&google.accounts.id)){if(++tries>40){$('er').textContent='تعذر تحميل زر جوجل، تأكد من الاتصال بالإنترنت'}else setTimeout(initGSI,500);return}
+ google.accounts.id.initialize({client_id:'894338765899-es9ssn7e63al75o7a099ef3ldsh8g068.apps.googleusercontent.com',callback:async r=>{try{await auth.signInWithCredential(firebase.auth.GoogleAuthProvider.credential(r.credential))}catch(e){$('er').textContent='خطأ: '+(e.code||e.message)}}});
+ google.accounts.id.renderButton($('gsi'),{theme:'filled_black',size:'large',text:'signin_with',locale:'ar',width:260})}
+ initGSI();
  $('gs').onclick=()=>{$('ov').style.display='none'};
  auth.onAuthStateChanged(async u=>{user=u;if(!u){$('ov').style.display='flex';return}
   $('ov').style.display='none';isAdmin=u.email==ADMIN&&u.emailVerified;
